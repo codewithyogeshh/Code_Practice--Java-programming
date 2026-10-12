@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Edu-Tracker Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+  <style>
+    /* ===== Base ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f7f9fc;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      width: 260px;
+      background: #5a4fcf;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px 15px;
+      transition: width 0.3s ease;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+    }
+
+    .sidebar .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .sidebar nav a.active {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .sidebar .bottom {
+      margin-top: auto;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .profile-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .profile-box img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+    }
+
+    .profile-box .name {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    /* ===== Theme Toggle ===== */
+    .theme-toggle {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #fff;
+      border-radius: 10px;
+      width: 100%;
+      padding: 10px;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ===== Main Content ===== */
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 30px;
+      transition: margin-left 0.3s ease;
+    }
+
+    .main h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      color: #5a4fcf;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-box {
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 12px;
+      background: #f4f6ff;
+      font-size: 16px;
+      font-weight: 540;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #5a4fcf;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: #4338ca;
+    }
+
+    #main-area {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ===== Dark Mode ===== */
+    body.dark {
+      background: #181a1b;
+      color: #e6e6e6;
+    }
+
+    body.dark .sidebar {
+      background: #2e2f45;
+    }
+
+    body.dark .card,
+    body.dark #main-area {
+      background: #252730;
+      color: #e6e6e6;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    body.dark .summary-box {
+      background: #30323f;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 800px) {
+      .sidebar {
+        position: fixed;
+        width: 70px;
+      }
+
+      .sidebar .logo,
+      .sidebar .name {
+        display: none;
+      }
+
+      .sidebar nav a span {
+        display: none;
+      }
+
+      .main {
+        margin-left: 70px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <aside class="sidebar">
+    <div>
+      <div class="logo">Edu-Tracker</div>
+      <nav>
+        <a href="#" class="active"><span class="material-icons-outlined">dashboard</span> <span>Dashboard</span></a>
+        <a href="#"><span class="material-icons-outlined">school</span> <span>Attendance</span></a>
+        <a href="#"><span class="material-icons-outlined">assignment</span> <span>Assignments</span></a>
+        <a href="#"><span class="material-icons-outlined">bar_chart</span> <span>CGPA</span></a>
+        <a href="#"><span class="material-icons-outlined">settings</span> <span>Settings</span></a>
+      </nav>
+    </div>
+
+    <div class="bottom">
+      <button class="theme-toggle" id="toggleTheme"><span class="material-icons-outlined">dark_mode</span> Theme</button>
+
+      <div class="profile-box">
+        <img src="/images/profile.jpg" alt="Profile">
+        <div class="name">Student</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <h1>Dashboard Overview</h1>
+
+    <div class="cards">
+      <div class="card" id="card-attendance">
+        <h3>📘 Attendance Details</h3>
+        <div id="attendance-summary" class="summary-box">--</div>
+        <button onclick="viewDetails('attendance')">View Details</button>
+      </div>
+
+      <div class="card" id="card-assignments">
+        <h3>📝 Assignments</h3>
+        <div id="assignments-summary" class="summary-box">--</div>
+        <button onclick="viewDetails('assignments')">Manage Assignments</button>
+      </div>
+
+      <div class="card" id="card-cgpa">
+        <h3>📊 CGPA</h3>
+        <div id="cgpa-summary" class="summary-box">--</div>
+        <button onclick="viewDetails('cgpa')">Calculate CGPA</button>
+      </div>
+    </div>
+
+    <div id="main-area"></div>
+  </main>
+
+  <script>
+    // Dark/Light Mode Toggle
+    const toggleBtn = document.getElementById('toggleTheme');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const icon = toggleBtn.querySelector('.material-icons-outlined');
+      icon.textContent = document.body.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+    });
+
+    // Connect with your JS
+    function viewDetails(section) {
+      console.log("Selected section:", section);
+      // Add your logic here
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERZONE 2004 • 2000s Indian Cyber Cafe Nostalgia</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0a0c16;
+            --xp-blue: #0055ea;
+            --xp-taskbar: linear-gradient(180deg, #245edb 0%, #1941a5 50%, #0d287d 100%);
+            --neon-green: #00ff88;
+            --neon-cyan: #00f0ff;
+            --neon-amber: #ffaa00;
+            --neon-pink: #ff007f;
+            --glass-bg: rgba(15, 23, 42, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --crt-glow: rgba(0, 240, 255, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(0, 85, 234, 0.25) 0%, transparent 45%),
+                radial-gradient(circle at 85% 80%, rgba(255, 0, 127, 0.18) 0%, transparent 45%),
+                linear-gradient(to bottom, rgba(10, 12, 22, 0.85), rgba(10, 12, 22, 0.95)),
+                url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="%23ffffff" fill-opacity="0.02"><path d="M0 39h40v1H0zM39 0h1v40h-1z"/></g></svg>');
+        }
+
+        /* CRT Overlay Filter */
+        .crt-scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 999;
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.03),
+                rgba(0, 255, 0, 0.01),
+                rgba(0, 0, 255, 0.03)
+            );
+            background-size: 100% 3px, 6px 100%;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .crt-scanlines.off {
+            opacity: 0;
+        }
+
+        /* Top Header Navigation & Status Bar */
+        header {
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            background: rgba(10, 12, 22, 0.6);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 10;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cafe-logo {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #0055ea, #00f0ff);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        .brand-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.1rem;
+            background: linear-gradient(90deg, #ffffff, #00f0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-family: 'VT323', monospace;
+            letter-spacing: 1px;
+        }
+
+        .cafe-stats {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-family: 'VT323', monospace;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--neon-cyan);
+        }
+
+        .stat-pill.rate {
+            color: var(--neon-green);
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+
+        .stat-pill.timer {
+            color: var(--neon-amber);
+            border-color: rgba(255, 170, 0, 0.3);
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-green);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        /* Main Container */
+        main {
+            max-width: 1280px;
+            margin: 1.5rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            z-index: 5;
+        }
+
+        /* Nostalgic Quotes Banner Ticker */
+        .quote-ticker-container {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid var(--glass-border);
+            border-left: 4px solid var(--neon-cyan);
+            border-radius: 12px;
+            padding: 0.9rem 1.4rem;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-tag {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem;
+            background: var(--xp-blue);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .quote-text {
+            font-family: 'VT323', monospace;
+            font-size: 1.35rem;
+            color: #f1f5f9;
+            transition: opacity 0.5s ease-in-out;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Central Visual Container - CRT Monitor Desktop */
+        .crt-monitor-frame {
+            background: #1e293b;
+            border: 16px solid #334155;
+            border-radius: 28px;
+            box-shadow: 
+                0 0 0 2px #0f172a,
+                0 20px 50px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+            min-height: 520px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-image: linear-gradient(135deg, #004e92, #000428);
+        }
+
+        /* Windows XP Desktop Style Header Inside Monitor */
+        .desktop-screen {
+            padding: 1.5rem;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 1.5rem;
+            position: relative;
+            flex-grow: 1;
+        }
+
+        /* Desktop Shortcuts Column */
+        .desktop-icons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            align-content: start;
+        }
+
+        .icon-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            border: 1px solid transparent;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .icon-btn i {
+            font-size: 2rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+        }
+
+        .icon-btn span {
+            font-size: 0.75rem;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+            font-weight: 500;
+        }
+
+        /* Windows XP Window Component */
+        .xp-window {
+            background: #ece9d8;
+            border: 3px solid #0055ea;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            max-height: 420px;
+        }
+
+        .xp-window-header {
+            background: linear-gradient(180deg, #0058e6 0%, #003bb3 100%);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+            font-family: Tahoma, sans-serif;
+        }
+
+        .xp-window-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .xp-controls {
+            display: flex;
+            gap: 3px;
+        }
+
+        .xp-btn {
+            width: 21px;
+            height: 21px;
+            border-radius: 3px;
+            border: 1px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .xp-btn.close {
+            background: linear-gradient(180deg, #e76446 0%, #b93113 100%);
+            color: white;
+        }
+
+        .xp-btn.minimize, .xp-btn.maximize {
+            background: linear-gradient(180deg, #3c93e7 0%, #155bb3 100%);
+            color: white;
+        }
+
+        .xp-window-body {
+            padding: 1rem;
+            background: #f5f5f0;
+            flex-grow: 1;
+            overflow-y: auto;
+            font-size: 0.88rem;
+            color: #111;
+        }
+
+        /* Yahoo Messenger Chat Tab styling */
+        .ym-chat-box {
+            background: #fff;
+            border: 1px solid #7f9db9;
+            height: 180px;
+            padding: 0.6rem;
+            overflow-y: auto;
+            font-family: Tahoma, sans-serif;
+            font-size: 0.82rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .chat-msg {
+            line-height: 1.3;
+        }
+
+        .chat-msg .sender {
+            font-weight: bold;
+        }
+
+        .chat-msg.friend .sender { color: #0000ff; }
+        .chat-msg.me .sender { color: #ff0000; }
+        .chat-msg.system { color: #666; font-style: italic; font-size: 0.78rem; }
+
+        .ym-toolbar {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .ym-btn {
+            background: linear-gradient(180deg, #ffffff 0%, #e3e3db 100%);
+            border: 1px solid #707070;
+            padding: 0.4rem 0.8rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: active 0.1s;
+        }
+
+        .ym-btn:active {
+            background: #ccc;
+        }
+
+        .ym-btn.buzz-btn {
+            background: linear-gradient(180deg, #ffe680 0%, #ffaa00 100%);
+            border-color: #b37700;
+            color: #4a2800;
+        }
+
+        /* Windows XP Taskbar */
+        .xp-taskbar {
+            height: 38px;
+            background: var(--xp-taskbar);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #428eff;
+            padding-right: 0.6rem;
+            z-index: 10;
+        }
+
+        .xp-start-btn {
+            height: 100%;
+            background: linear-gradient(180deg, #388e3c 0%, #1b5e20 100%);
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: bold;
+            font-style: italic;
+            font-family: Tahoma, sans-serif;
+            font-size: 1rem;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+            cursor: pointer;
+            border: none;
+        }
+
+        .xp-start-btn:hover {
+            filter: brightness(1.15);
+        }
+
+        .xp-taskbar-items {
+            display: flex;
+            gap: 0.4rem;
+            flex-grow: 1;
+            margin: 0 0.8rem;
+        }
+
+        .xp-task-item {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.2rem 0.6rem;
+            border-radius: 3px;
+            color: white;
+            font-size: 0.78rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            max-width: 160px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .xp-tray {
+            background: rgba(0, 0, 0, 0.25);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0 0.8rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: white;
+            font-size: 0.8rem;
+            font-family: Tahoma, sans-serif;
+        }
+
+        /* Nostalgia Interactive Cards Grid */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .memory-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.2rem;
+            backdrop-filter: blur(16px);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 240, 255, 0.12);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--neon-cyan);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .card-header i {
+            font-size: 1.3rem;
+        }
+
+        .card-content {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .cheat-code-list {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.6rem;
+            border-radius: 8px;
+            font-family: 'VT323', monospace;
+            font-size: 1.1rem;
+            color: var(--neon-green);
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        /* Fixed Bottom Glassmorphism Music Player */
+        .music-player-dock {
+            position: fixed;
+            bottom: 1.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 3rem);
+            max-width: 980px;
+            background: rgba(10, 14, 29, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 0.9rem 1.5rem;
+            z-index: 100;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 85, 234, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .track-info-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            min-width: 240px;
+        }
+
+        .album-art-cd {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #333 20%, #111 21%, #111 35%, #444 36%, #222 45%, #fff 100%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            animation: spin 8s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .album-art-cd.playing {
+            animation-play-state: running;
+        }
+
+        .cd-center {
+            width: 14px;
+            height: 14px;
+            background: var(--bg-dark);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .track-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            overflow: hidden;
+        }
+
+        .track-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .track-source {
+            font-size: 0.75rem;
+            color: var(--neon-cyan);
+            font-family: 'VT323', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        /* Player Controls */
+        .player-center-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            flex-grow: 1;
+            max-width: 480px;
+        }
+
+        .control-btns {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: none;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.1s;
+        }
+
+        .action-btn:hover {
+            color: var(--neon-cyan);
+            transform: scale(1.1);
+        }
+
+        .action-btn.play-main {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0055ea, #00f0ff);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        .action-btn.play-main:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 22px rgba(0, 240, 255, 0.7);
+        }
+
+        .progress-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .time-stamp {
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            color: #94a3b8;
+            min-width: 38px;
+        }
+
+        .progress-bar-bg {
+            flex-grow: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--xp-blue), var(--neon-cyan));
+            border-radius: 10px;
+            transition: width 0.2s linear;
+        }
+
+        /* Secondary Player Actions */
+        .player-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #94a3b8;
+        }
+
+        .volume-slider {
+            width: 70px;
+            accent-color: var(--neon-cyan);
+            cursor: pointer;
+        }
+
+        .crt-toggle-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .crt-toggle-btn:hover {
+            background: rgba(0, 240, 255, 0.2);
+            border-color: var(--neon-cyan);
+        }
+
+        /* Screen Shake Animation for Yahoo BUZZ */
+        @keyframes buzzShake {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            10% { transform: translate(-8px, -6px) rotate(-1deg); }
+            20% { transform: translate(8px, 6px) rotate(1deg); }
+            30% { transform: translate(-6px, 4px) rotate(0deg); }
+            40% { transform: translate(6px, -4px) rotate(1deg); }
+            50% { transform: translate(-4px, -2px) rotate(-1deg); }
+            60% { transform: translate(4px, 2px) rotate(0deg); }
+            70% { transform: translate(-2px, 4px) rotate(1deg); }
+            80% { transform: translate(2px, -2px) rotate(0deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .shake-screen {
+            animation: buzzShake 0.5s ease-in-out;
+        }
+
+        /* Notification Toast Popup */
+        .toast-msg {
+            position: fixed;
+            top: 5rem;
+            right: 2rem;
+            background: #ffea79;
+            color: #4a2800;
+            border: 2px solid #b37700;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transform: translateX(150%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: Tahoma, sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .toast-msg.show {
+            transform: translateX(0);
+        }
+
+        /* Hidden YouTube Iframe Container */
+        #youtube-player-container {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+            overflow: hidden;
+            bottom: 0;
+            right: 0;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .desktop-screen {
+                grid-template-columns: 1fr;
+            }
+            .desktop-icons {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .music-player-dock {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0.8rem;
+                bottom: 0.5rem;
+                width: calc(100% - 1rem);
+            }
+            .track-info-group {
+                min-width: auto;
+                width: 100%;
+            }
+            .player-center-controls {
+                width: 100%;
+            }
+            body {
+                padding-bottom: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CRT Scanlines Overlay -->
+    <div class="crt-scanlines" id="crtOverlay"></div>
+
+    <!-- BUZZ Notification Toast -->
+    <div class="toast-msg" id="toastBox">
+        <i class="fa-solid fa-bell fa-bounce" style="font-size: 1.4rem; color: #cc6600;"></i>
+        <div id="toastText">BUZZ!!! Yahoo Messenger Alert!</div>
+    </div>
+
+    <!-- Header / Status Bar -->
+    <header>
+        <div class="brand-container">
+            <div class="cafe-logo">
+                <i class="fa-solid fa-desktop"></i>
+            </div>
+            <div>
+                <h1 class="brand-title">SPEEDNET CYBER CAFE</h1>
+                <div class="brand-subtitle">SYSTEM CABIN #07 • HIGH SPEED DIAL-UP INTERNET</div>
+            </div>
+        </div>
+
+        <div class="cafe-stats">
+            <div class="stat-pill rate">
+                <i class="fa-solid fa-indian-rupee-sign"></i> ₹20 / HOUR
+            </div>
+            <div class="stat-pill timer">
+                <i class="fa-regular fa-clock"></i> <span id="sessionTimer">00:58:42</span>
+            </div>
+            <div class="stat-pill" style="color: var(--neon-green);">
+                <div class="live-dot"></div> CONNECTED (56 Kbps)
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Rotating Nostalgic Quotes Banner -->
+        <div class="quote-ticker-container">
+            <div class="quote-tag">CAFE MEMORY</div>
+            <div class="quote-text" id="quoteDisplay">
+                "Bhaiya, PC #7 me song download ho gaya hai, Nokia 6600 me Bluetooth se daal do!"
+            </div>
+        </div>
+
+        <!-- Central CRT Monitor Visual with Windows XP Interactive Environment -->
+        <div class="crt-monitor-frame">
+            <div class="desktop-screen">
+                <!-- Desktop Icons -->
+                <div class="desktop-icons">
+                    <div class="icon-btn" onclick="triggerBuzzSound()">
+                        <i class="fa-brands fa-yahoo" style="color: #a855f7;"></i>
+                        <span>Yahoo! Messenger</span>
+                    </div>
+                    <div class="icon-btn" onclick="openWindow('cs16')">
+                        <i class="fa-solid fa-crosshairs" style="color: #ef4444;"></i>
+                        <span>Counter-Strike 1.6</span>
+                    </div>
+                    <div class="icon-btn" onclick="openWindow('songs')">
+                        <i class="fa-solid fa-music" style="color: #22c55e;"></i>
+                        <span>Songs.pk</span>
+                    </div>
+                    <div class="icon-btn" onclick="openWindow('orkut')">
+                        <i class="fa-solid fa-users" style="color: #ec4899;"></i>
+                        <span>Orkut</span>
+                    </div>
+                    <div class="icon-btn" onclick="triggerDialupSound()">
+                        <i class="fa-solid fa-network-wired" style="color: #3b82f6;"></i>
+                        <span>Dial-Up Connect</span>
+                    </div>
+                    <div class="icon-btn" onclick="extendTimer()">
+                        <i class="fa-solid fa-hand-holding-dollar" style="color: #f59e0b;"></i>
+                        <span>+1 Hr Extend</span>
+                    </div>
+                </div>
+
+                <!-- Windows XP Interactive Window (Yahoo Messenger) -->
+                <div class="xp-window" id="activeWindow">
+                    <div class="xp-window-header">
+                        <div class="xp-window-title">
+                            <i class="fa-brands fa-yahoo"></i>
+                            <span id="windowTitleName">Yahoo! Messenger 6.0 - [Chat: Pooja_Cool_16]</span>
+                        </div>
+                        <div class="xp-controls">
+                            <div class="xp-btn minimize">_</div>
+                            <div class="xp-btn maximize">□</div>
+                            <div class="xp-btn close">X</div>
+                        </div>
+                    </div>
+
+                    <div class="xp-window-body" id="windowBodyContent">
+                        <div class="ym-chat-box" id="chatBox">
+                            <div class="chat-msg system">*** You are now chatting in Yahoo Room: #India_Delhi_20s ***</div>
+                            <div class="chat-msg friend"><span class="sender">Pooja_Cool_16:</span> ASL PLZ? 😊</div>
+                            <div class="chat-msg me"><span class="sender">Cool_Rahul_2004:</span> 19 / M / Delhi. n u?</div>
+                            <div class="chat-msg friend"><span class="sender">Pooja_Cool_16:</span> 18 / F / Delhi! Listening to 'Tere Liye' on Winamp!</div>
+                            <div class="chat-msg system">*** Nokia 6600 connected via Bluetooth dongle ***</div>
+                        </div>
+
+                        <div class="ym-toolbar">
+                            <button class="ym-btn buzz-btn" onclick="triggerBuzzSound()">
+                                <i class="fa-solid fa-bolt"></i> SEND BUZZ!
+                            </button>
+                            <button class="ym-btn" onclick="sendChatMessage('Bhaiya 15 min bache hain, extend kar do!')">
+                                <i class="fa-regular fa-comment"></i> Quick Reply
+                            </button>
+                            <button class="ym-btn" onclick="extendTimer()">
+                                <i class="fa-solid fa-plus"></i> Add ₹20 / 1 Hr
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Windows XP Taskbar -->
+            <div class="xp-taskbar">
+                <button class="xp-start-btn" onclick="triggerBuzzSound()">
+                    <i class="fa-brands fa-windows"></i> start
+                </button>
+                <div class="xp-taskbar-items">
+                    <div class="xp-task-item">
+                        <i class="fa-brands fa-yahoo" style="color: #a855f7;"></i> Yahoo! Messenger
+                    </div>
+                    <div class="xp-task-item">
+                        <i class="fa-solid fa-compact-disc" style="color: #3b82f6;"></i> Winamp 2.91
+                    </div>
+                </div>
+                <div class="xp-tray">
+                    <i class="fa-solid fa-volume-high"></i>
+                    <i class="fa-solid fa-shield-halved" style="color: #22c55e;"></i>
+                    <span id="trayClock">04:20 PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nostalgia Cards Grid -->
+        <div class="memory-grid">
+            <!-- Card 1: LAN Gaming & GTA Vice City -->
+            <div class="memory-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-gamepad" style="color: #ef4444;"></i>
+                    <span>LAN Gaming & Cheats</span>
+                </div>
+                <div class="card-content">
+                    Counter-Strike 1.6 matches on <strong style="color: var(--neon-cyan);">de_dust2</strong> with cabin screaming! Type cheat codes on your keyboard anytime:
+                </div>
+                <div class="cheat-code-list">
+                    <div>> ASPIRINE (Full Health)</div>
+                    <div>> PRECIOUSPROTECTION (Armor)</div>
+                    <div>> LEAVEMEALONE (Never Wanted)</div>
+                </div>
+            </div>
+
+            <!-- Card 2: 2000s Songs & Songs.pk Era -->
+            <div class="memory-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-compact-disc" style="color: #22c55e;"></i>
+                    <span>Songs.pk & Infrared Transfer</span>
+                </div>
+                <div class="card-content">
+                    Downloading 128kbps MP3s from Songs.pk at 12 KB/s speed. Transferring full tracks to Nokia 6600 or Sony Ericsson Walkman phones via Infrared or Bluetooth!
+                </div>
+            </div>
+
+            <!-- Card 3: Cyber Cafe Culture -->
+            <div class="memory-card">
+                <div class="card-header">
+                    <i class="fa-solid fa-circle-exclamation" style="color: #f59e0b;"></i>
+                    <span>Cafe Golden Rules</span>
+                </div>
+                <div class="card-content">
+                    <ul style="padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem;">
+                        <li>₹20 per hour (₹15 for night package)</li>
+                        <li>Strictly NO Adult Sites - CCTV Surveillance</li>
+                        <li>Headphones mandatory for MP3 listening</li>
+                        <li>Bhaiya ko bolke Pen Drive scan karwao!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Glassmorphism Music Player Fixed Dock -->
+    <div class="music-player-dock">
+        <!-- Track Details -->
+        <div class="track-info-group">
+            <div class="album-art-cd" id="cdDisc">
+                <div class="cd-center"></div>
+            </div>
+            <div class="track-details">
+                <div class="track-title" id="trackTitle">2000s Bollywood Nostalgia Mix</div>
+                <div class="track-source" id="trackArtist"><i class="fa-brands fa-youtube"></i> PLAYLIST • 2000s CYBER CAFE HITS</div>
+            </div>
+        </div>
+
+        <!-- Controls & Progress -->
+        <div class="player-center-controls">
+            <div class="control-btns">
+                <button class="action-btn" onclick="prevTrack()" title="Previous Track"><i class="fa-solid fa-backward-step"></i></button>
+                <button class="action-btn play-main" id="playBtn" onclick="togglePlayPause()" title="Play / Pause"><i class="fa-solid fa-play" id="playIcon"></i></button>
+                <button class="action-btn" onclick="nextTrack()" title="Next Track"><i class="fa-solid fa-forward-step"></i></button>
+                <button class="action-btn" onclick="triggerBuzzSound()" title="Send Yahoo Buzz!"><i class="fa-solid fa-bolt" style="color: var(--neon-amber);"></i></button>
+            </div>
+            <div class="progress-container">
+                <span class="time-stamp" id="currentTime">00:00</span>
+                <div class="progress-bar-bg" onclick="seekAudio(event)">
+                    <div class="progress-bar-fill" id="progressFill"></div>
+                </div>
+                <span class="time-stamp" id="totalDuration">04:30</span>
+            </div>
+        </div>
+
+        <!-- Right Side Actions & Volume -->
+        <div class="player-right-actions">
+            <div class="volume-control">
+                <i class="fa-solid fa-volume-high" id="volumeIcon"></i>
+                <input type="range" class="volume-slider" id="volumeRange" min="0" max="100" value="80" oninput="changeVolume(this.value)">
+            </div>
+            <button class="crt-toggle-btn" onclick="toggleCRT()"><i class="fa-solid fa-tv"></i> CRT LINES</button>
+        </div>
+    </div>
+
+    <!-- Hidden YouTube API Player Container -->
+    <div id="youtube-player-container">
+        <div id="ytPlayer"></div>
+    </div>
+
+    <!-- YouTube IFrame API Script -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        // --- Web Audio API Synthesizer Sound Effects (100% Reliable Audio) ---
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function initAudioCtx() {
+            if (!audioCtx) {
+                audioCtx = new AudioCtx();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Yahoo Messenger BUZZ Sound Effect Synthesizer
+        function playBuzzSound() {
+            initAudioCtx();
+            if (!audioCtx) return;
+
+            const osc1 = audioCtx.createOscillator();
+            const osc2 = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc1.type = 'sawtooth';
+            osc2.type = 'square';
+
+            osc1.frequency.setValueAtTime(120, audioCtx.currentTime);
+            osc2.frequency.setValueAtTime(180, audioCtx.currentTime);
+
+            // Frequency sweep to mimic buzzing buzzer
+            osc1.frequency.linearRampToValueAtTime(80, audioCtx.currentTime + 0.4);
+            osc2.frequency.linearRampToValueAtTime(130, audioCtx.currentTime + 0.4);
+
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.45);
+
+            osc1.connect(gain);
+            osc2.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc1.start();
+            osc2.start();
+            osc1.stop(audioCtx.currentTime + 0.45);
+            osc2.stop(audioCtx.currentTime + 0.45);
+        }
+
+        // Dial-Up Modem Sound Synthesizer
+        function playDialupSound() {
+            initAudioCtx();
+            if (!audioCtx) return;
+
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(350, now);
+            osc.frequency.setValueAtTime(440, now + 0.1);
+            osc.frequency.setValueAtTime(980, now + 0.3);
+            osc.frequency.setValueAtTime(1300, now + 0.5);
+
+            gain.gain.setValueAtTime(0.15, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start(now);
+            osc.stop(now + 0.8);
+        }
+
+        // Cash / Extension Chime
+        function playChimeSound() {
+            initAudioCtx();
+            if (!audioCtx) return;
+
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(523.25, now); // C5
+            osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+            osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+            osc.frequency.setValueAtTime(1046.50, now + 0.3); // C6
+
+            gain.gain.setValueAtTime(0.2, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start(now);
+            osc.stop(now + 0.6);
+        }
+
+        // --- Trigger Functions ---
+        function triggerBuzzSound() {
+            playBuzzSound();
+            document.body.classList.add('shake-screen');
+            setTimeout(() => document.body.classList.remove('shake-screen'), 500);
+
+            showToast("BUZZ!!! Yahoo Messenger Alert!");
+            
+            // Add message to chat
+            sendChatMessage("BUZZ!!! Sent to Pooja_Cool_16", true);
+        }
+
+        function triggerDialupSound() {
+            playDialupSound();
+            showToast("Connecting 56k Dial-Up Modem... Handshaking...");
+        }
+
+        function showToast(text) {
+            const toast = document.getElementById('toastBox');
+            const toastText = document.getElementById('toastText');
+            toastText.textContent = text;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        function sendChatMessage(text, isBuzz = false) {
+            const chatBox = document.getElementById('chatBox');
+            const msg = document.createElement('div');
+            msg.className = isBuzz ? 'chat-msg system' : 'chat-msg me';
+            if (isBuzz) {
+                msg.textContent = `*** ${text} ***`;
+            } else {
+                msg.innerHTML = `<span class="sender">Cool_Rahul_2004:</span> ${text}`;
+            }
+            chatBox.appendChild(msg);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Extend Session Timer
+        let totalSeconds = 3522; // ~58 mins
+        function extendTimer() {
+            playChimeSound();
+            totalSeconds += 3600; // Add 1 hour
+            updateTimerDisplay();
+            showToast("₹20 Charged! Session Extended by +1 Hour!");
+            sendChatMessage("Bhaiya ne +1 Ghanta extend kar diya!");
+        }
+
+        function updateTimerDisplay() {
+            const hrs = Math.floor(totalSeconds / 3600);
+            const mins = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
+            document.getElementById('sessionTimer').textContent = 
+                `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        setInterval(() => {
+            if (totalSeconds > 0) {
+                totalSeconds--;
+                updateTimerDisplay();
+            }
+        }, 1000);
+
+        // --- Window Content Switcher ---
+        function openWindow(type) {
+            initAudioCtx();
+            const title = document.getElementById('windowTitleName');
+            const chatBox = document.getElementById('chatBox');
+
+            if (type === 'cs16') {
+                title.textContent = "Counter-Strike 1.6 v1.6 [Server: India_Dust2_24x7]";
+                chatBox.innerHTML = `
+                    <div class="chat-msg system">*** Connected to Counter-Strike 1.6 LAN Server ***</div>
+                    <div class="chat-msg friend"><span class="sender">[Pro_Gamer_2004]:</span> Fire in the hole! A site cover karo!</div>
+                    <div class="chat-msg me"><span class="sender">Cool_Rahul_2004:</span> B site pe bomb plant kar diya hai!</div>
+                    <div class="chat-msg friend"><span class="sender">[Cyber_King]:</span> Bhaiya keyboard ka Spacebar kaam nahi kar raha!</div>
+                `;
+                showToast("Counter-Strike 1.6 Server Joined!");
+            } else if (type === 'songs') {
+                title.textContent = "Songs.pk MP3 Downloader 2004";
+                chatBox.innerHTML = `
+                    <div class="chat-msg system">*** Songs.pk Bollywood Hits 2000-2005 ***</div>
+                    <div class="chat-msg friend"><span class="sender">Downloading:</span> Tere Liye - Prince (128 kbps).mp3</div>
+                    <div class="chat-msg me"><span class="sender">Status:</span> 64% completed (Speed: 14.2 KB/s)</div>
+                    <div class="chat-msg system">*** Estimated time remaining: 02 mins 15 secs ***</div>
+                `;
+                showToast("Downloading track from Songs.pk...");
+            } else if (type === 'orkut') {
+                title.textContent = "Orkut - Welcome Rahul! (12 Scraps Unread)";
+                chatBox.innerHTML = `
+                    <div class="chat-msg system">*** Orkut Scrapbook & Fan Ratings ***</div>
+                    <div class="chat-msg friend"><span class="sender">Pooja:</span> Hey dear! Thanks for d scrap! Add me as trusted 🌟</div>
+                    <div class="chat-msg friend"><span class="sender">Amit:</span> Kal Cyber Cafe me CS 1.6 khelenge 4 baje!</div>
+                    <div class="chat-msg system">*** Fans: 85% Sexy, 90% Cool, 100% Trustworthy ***</div>
+                `;
+                showToast("Orkut Scrapbook Loaded!");
+            }
+        }
+
+        // --- Rotating Nostalgic Quotes Ticker ---
+        const quotes = [
+            `"Bhaiya, PC #7 me song download ho gaya hai, Nokia 6600 me Bluetooth se daal do!"`,
+            `"ASL PLZ? (Age, Sex, Location) - Yahoo Messenger Chatroom #India_Delhi_20s"`,
+            `"GTA Vice City cheat code: NUTTERTOOLS, PRECIOUSPROTECTION, ASPIRINE"`,
+            `"Songs.pk se 128kbps MP3 download speed: 12 KB/s... ETA 14 mins"`,
+            `"Orkut Scrap: Hey dear, thx for d add! Rate me 5 stars 🌟 in trusted!"`,
+            `"Infrared connection lost! Move Nokia 6600 closer to the USB dongle!"`,
+            `"Bhai CS 1.6 me de_dust2 pe A site pe AWP se sniper mat maar!"`,
+            `"Cyber Cafe Rules: Strictly No Adult Sites! CCTV Surveillance Enabled."`,
+            `"Bhaiya 1 hour extend kar do, ₹20 baad me deta hu!"`
+        ];
+
+        let quoteIndex = 0;
+        const quoteEl = document.getElementById('quoteDisplay');
+        setInterval(() => {
+            quoteEl.style.opacity = '0';
+            setTimeout(() => {
+                quoteIndex = (quoteIndex + 1) % quotes.length;
+                quoteEl.textContent = quotes[quoteIndex];
+                quoteEl.style.opacity = '1';
+            }, 500);
+        }, 5000);
+
+        // --- CRT Scanline Toggle ---
+        function toggleCRT() {
+            const crt = document.getElementById('crtOverlay');
+            crt.classList.toggle('off');
+            showToast(crt.classList.contains('off') ? "CRT Scanlines Disabled" : "CRT Scanlines Enabled");
+        }
+
+        // --- System Tray Clock ---
+        function updateTrayClock() {
+            const now = new Date();
+            let hrs = now.getHours();
+            const mins = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hrs >= 12 ? 'PM' : 'AM';
+            hrs = hrs % 12 || 12;
+            document.getElementById('trayClock').textContent = `${hrs}:${mins} ${ampm}`;
+        }
+        setInterval(updateTrayClock, 1000);
+        updateTrayClock();
+
+        // --- Keyboard Cheat Code Listener Easter Egg ---
+        let typedString = "";
+        window.addEventListener('keydown', (e) => {
+            typedString += e.key.toUpperCase();
+            if (typedString.length > 20) {
+                typedString = typedString.slice(-20);
+            }
+
+            if (typedString.includes("ASPIRINE") || typedString.includes("LEAVEMEALONE") || typedString.includes("NUTTERTOOLS")) {
+                playChimeSound();
+                showToast("🎮 CHEAT ACTIVATED! HEALTH & AMMO REFILLED!");
+                typedString = "";
+            }
+        });
+
+        // --- YouTube Playlist & Audio Controller ---
+        let ytPlayer = null;
+        let isPlaying = false;
+        let progressInterval = null;
+
+        // Fallback song titles for 2000s Bollywood nostalgia playlist
+        const fallbackPlaylist = [
+            { title: "Tere Liye", artist: "Prince • Atif Aslam, Shreya Ghoshal" },
+            { title: "Aashiq Banaya Aapne", artist: "Himesh Reshammiya, Shreya Ghoshal" },
+            { title: "Kya Mujhe Pyar Hai", artist: "Woh Lamhe • KK" },
+            { title: "O Humdum Suniyo Re", artist: "Saathiya • KK, Shaan" },
+            { title: "Tu Jaane Na", artist: "Ajab Prem Ki Ghazab Kahani • Atif Aslam" },
+            { title: "Dil Chahta Hai", artist: "Dil Chahta Hai • Shankar Mahadevan" }
+        ];
+        let currentFallbackIndex = 0;
+
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player('ytPlayer', {
+                height: '0',
+                width: '0',
+                playerVars: {
+                    listType: 'playlist',
+                    list: 'PLbig_FMO_yPo',
+                    autoplay: 0,
+                    controls: 0,
+                    modestbranding: 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            updatePlayerTrackMeta();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                isPlaying = true;
+                updatePlayBtnUI();
+                startProgressTracker();
+                updatePlayerTrackMeta();
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                isPlaying = false;
+                updatePlayBtnUI();
+                stopProgressTracker();
+            }
+        }
+
+        function togglePlayPause() {
+            initAudioCtx();
+            if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') {
+                // Fallback toggle simulation
+                isPlaying = !isPlaying;
+                updatePlayBtnUI();
+                return;
+            }
+
+            const state = ytPlayer.getPlayerState();
+            if (state === YT.PlayerState.PLAYING) {
+                ytPlayer.pauseVideo();
+            } else {
+                ytPlayer.playVideo();
+            }
+        }
+
+        function nextTrack() {
+            initAudioCtx();
+            if (ytPlayer && typeof ytPlayer.nextVideo === 'function') {
+                ytPlayer.nextVideo();
+            } else {
+                currentFallbackIndex = (currentFallbackIndex + 1) % fallbackPlaylist.length;
+                updateFallbackTrackUI();
+            }
+        }
+
+        function prevTrack() {
+            initAudioCtx();
+            if (ytPlayer && typeof ytPlayer.previousVideo === 'function') {
+                ytPlayer.previousVideo();
+            } else {
+                currentFallbackIndex = (currentFallbackIndex - 1 + fallbackPlaylist.length) % fallbackPlaylist.length;
+                updateFallbackTrackUI();
+            }
+        }
+
+        function updatePlayBtnUI() {
+            const playIcon = document.getElementById('playIcon');
+            const cdDisc = document.getElementById('cdDisc');
+            if (isPlaying) {
+                playIcon.className = "fa-solid fa-pause";
+                cdDisc.classList.add('playing');
+            } else {
+                playIcon.className = "fa-solid fa-play";
+                cdDisc.classList.remove('playing');
+            }
+        }
+
+        function updatePlayerTrackMeta() {
+            if (ytPlayer && typeof ytPlayer.getVideoData === 'function') {
+                const data = ytPlayer.getVideoData();
+                if (data && data.title) {
+                    document.getElementById('trackTitle').textContent = data.title;
+                    document.getElementById('trackArtist').textContent = `AUTHOR: ${data.author || '2000s BOLLYWOOD'} • PLAYLIST`;
+                    return;
+                }
+            }
+            updateFallbackTrackUI();
+        }
+
+        function updateFallbackTrackUI() {
+            const item = fallbackPlaylist[currentFallbackIndex];
+            document.getElementById('trackTitle').textContent = item.title;
+            document.getElementById('trackArtist').textContent = item.artist;
+        }
+
+        function startProgressTracker() {
+            stopProgressTracker();
+            progressInterval = setInterval(() => {
+                if (ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
+                    const current = ytPlayer.getCurrentTime() || 0;
+                    const duration = ytPlayer.getDuration() || 1;
+                    const pct = (current / duration) * 100;
+                    document.getElementById('progressFill').style.width = `${pct}%`;
+                    document.getElementById('currentTime').textContent = formatTime(current);
+                    document.getElementById('totalDuration').textContent = formatTime(duration);
+                }
+            }, 500);
+        }
+
+        function stopProgressTracker() {
+            if (progressInterval) clearInterval(progressInterval);
+        }
+
+        function seekAudio(e) {
+            const bar = e.currentTarget;
+            const rect = bar.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const pct = clickX / rect.width;
+            
+            if (ytPlayer && typeof ytPlayer.getDuration === 'function') {
+                const duration = ytPlayer.getDuration() || 0;
+                ytPlayer.seekTo(duration * pct, true);
+            }
+        }
+
+        function changeVolume(val) {
+            if (ytPlayer && typeof ytPlayer.setVolume === 'function') {
+                ytPlayer.setVolume(val);
+            }
+            const icon = document.getElementById('volumeIcon');
+            if (val == 0) icon.className = "fa-solid fa-volume-xmark";
+            else if (val < 50) icon.className = "fa-solid fa-volume-low";
+            else icon.className = "fa-solid fa-volume-high";
+        }
+
+        function formatTime(secs) {
+            const m = Math.floor(secs / 60);
+            const s = Math.floor(secs % 60);
+            return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>
