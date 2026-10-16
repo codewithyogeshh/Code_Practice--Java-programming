@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+class Eligible{
+	public static void main(String[]args){
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Enter Experience");
+	int Experience = nextInt();
+
+	System.out.println("Enter Salary");
+	int Salary = nextInt();
+
+	if(Experience > 5 && Salary > 25000){
+		System.out.println("Bonus Eligible");
+	}else{
+		System.out.println("Not Eligible");
+	}
+
+	
+
+
+}
+}
