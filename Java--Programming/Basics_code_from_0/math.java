@@ -8,5 +8,6 @@ System.out.println(a - b);
 System.out.println(a * b);
 System.out.println(a / b);
 System.out.println(a % b);
+System.out.println(10 + 20 + "Java");
 }
 }
