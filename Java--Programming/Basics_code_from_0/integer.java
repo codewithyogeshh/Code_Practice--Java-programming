@@ -1,11 +1,13 @@
 class Demo {
     public static void main(String[] args) {
 
-          String name = "Yogesh";
-
-        int[] marks = {80, 90, 85};
+         var name = "Yogesh";
+        var age = 20;
+        var marks = 85.5;
+      
 
         System.out.println(name);
-        System.out.println(marks[0]);
+        System.out.println(age);
+        System.out.println(marks);
 }
 }
