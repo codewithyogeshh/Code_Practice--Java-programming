@@ -1,18 +1,11 @@
 class Demo {
     public static void main(String[] args) {
 
-        byte a = 100;
-        short b = 20000;
-        int c = 500000;
+          String name = "Yogesh";
 
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(c);
-       
-        float price = 99.50f;
-        double salary = 45000.75;
+        int[] marks = {80, 90, 85};
 
-        System.out.println(price);
-        System.out.println(salary);
-    }
+        System.out.println(name);
+        System.out.println(marks[0]);
+}
 }
