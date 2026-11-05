@@ -3,7 +3,7 @@ class Demo {
 
         var name = "Yogesh";
         var age = 20;
-       	var marks = 85;
+       	var marks = 8;
 
 
         int a = 10;
