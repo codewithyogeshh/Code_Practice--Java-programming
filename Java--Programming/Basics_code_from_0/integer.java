@@ -6,7 +6,7 @@ class Demo {
        	var marks = 85.5;
 
 
-        int a = 100;
+        int a = 10;
 
         Integer b = Integer.valueOf(a);
 
