@@ -9,7 +9,7 @@ class Demo {
         System.out.println(b);
         System.out.println(c);
        
- float price = 99.50f;
+        float price = 99.50f;
         double salary = 45000.75;
 
         System.out.println(price);
