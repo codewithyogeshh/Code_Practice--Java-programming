@@ -5,7 +5,7 @@ class Demo{
 
 	int a = 10;
 
-	a++;
+	int b = a++;
 	System.out.println(a);
 
 	a--;
