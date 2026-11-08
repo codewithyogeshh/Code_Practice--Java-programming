@@ -18,5 +18,7 @@ System.out.println(result);
 	System.out.println(10 % 3);
 	System.out.println(20 % 4);
 	System.out.println(15 % 2);
+
+	System.out.println(10.0 / 0.0);
 }
 }
