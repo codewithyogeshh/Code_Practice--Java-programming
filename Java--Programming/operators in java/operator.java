@@ -11,5 +11,8 @@ int result = a + b;
         System.out.println("Remainder: " + (a % b));
 
 System.out.println(result);
+
+	System.out.println(10 / 3);
+	System.out.println(10.0 / 3);
 }
 }
