@@ -9,7 +9,7 @@ class Demo{
 	System.out.println(b);
 
 	int x=20;
-	int c = --x;
+	int c = x--;
 	System.out.println(c);
 }
 
