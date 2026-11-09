@@ -8,8 +8,8 @@ class Demo{
 	int b = a++;
 	System.out.println(b);
 
-	a--;
-	int c = a--;
+	int x=20;
+	int c = x--;
 	System.out.println(c);
 }
 
