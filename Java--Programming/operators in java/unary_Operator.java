@@ -11,6 +11,9 @@ class Demo{
 	int x=20;
 	int c = x--;
 	System.out.println(c);
+
+	++x;
+	System.out.println(x);
 }
 
 }
