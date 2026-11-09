@@ -9,7 +9,8 @@ class Demo{
 	System.out.println(b);
 
 	a--;
-	System.out.println(a);
+	int c = a--;
+	System.out.println(c);
 }
 
 }
