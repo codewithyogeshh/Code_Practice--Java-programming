@@ -12,7 +12,7 @@ class Demo{
 	int c = x--;
 	System.out.println(c);
 
-	++x;
+	x++;
 	System.out.println(x);
 }
 
