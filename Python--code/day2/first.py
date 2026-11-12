@@ -4,9 +4,11 @@
 name = "Yogesh"
 age = 20
 goal = "Become an Advanced Python Developer"
+edu = "B.tech in CSE"
 
 print("========== MY PROFILE ==========")
 print("Name:", name)
 print("Age:", age)
 print("Goal:", goal)
+print("Education:", edu)
 print("================================")
