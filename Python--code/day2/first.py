@@ -1,14 +1,6 @@
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
 
-# My First Python Program
+result = a + b
 
-name = input("Enter your name: ")
-
-print("Hello", name)
-
-price = float(input("Enter product price: "))
-
-print("Product price:", price)
-
-age = input("Enter your age: ")
-
-print("tumchi agee:", age)
+print("Addition:", result)
