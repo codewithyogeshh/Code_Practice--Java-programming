@@ -1,615 +1,106 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yogesh | Creative Developer</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08090b">
+<meta name="description" content="Yogesh Chavan — developer exploring web, AI, and human-centred technology.">
+<title>Yogesh Chavan — Digital Craft & Code</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--bg:#08090b;--fg:#f5f5f7;--muted:#a1a1aa;--line:#ffffff20;--accent:#d6ff70;--glass:#101115b8;--max:1160px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:90px}body{background:var(--bg);color:var(--fg);font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}::selection{background:var(--accent);color:#08090b}
+#cinema{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;background:#08090b;filter:saturate(.68) brightness(.53)}.video-overlay{position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(90deg,rgba(8,9,11,.95) 0%,rgba(8,9,11,.68) 55%,rgba(8,9,11,.42) 100%),linear-gradient(0deg,#08090b 0%,transparent 45%,rgba(8,9,11,.42) 100%)}.ambient{position:fixed;z-index:-1;inset:0;pointer-events:none;background:radial-gradient(ellipse at 72% 35%,#d6ff7010,transparent 38%)}.grain{position:fixed;inset:0;z-index:30;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}.progress{height:2px;width:0;position:fixed;top:0;left:0;background:var(--accent);z-index:60}
+.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}.nav-shell{position:fixed;top:12px;left:0;width:100%;z-index:50;padding:0 20px}.nav{max-width:var(--max);margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 15px;border:1px solid #ffffff1a;border-radius:16px;background:#101115a8;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:-.4px}.brand-mark{width:29px;height:29px;display:grid;place-items:center;border-radius:9px;background:var(--accent);color:#10110c;font:700 10px 'DM Mono'}.navlinks{display:flex;gap:25px;color:#c9c9ce;font:10px 'DM Mono';letter-spacing:.7px;text-transform:uppercase}.navlinks a{transition:color .2s}.navlinks a:hover,.navlinks a.active{color:var(--accent)}.nav-cta{font-size:10px;font-weight:700;border:1px solid #ffffff29;padding:10px 13px;border-radius:999px;transition:.25s}.nav-cta:hover{background:var(--accent);border-color:var(--accent);color:#08090b}.menu{display:none;color:white;background:none;border:1px solid var(--line);border-radius:9px;padding:8px}
+.hero{min-height:100svh;display:flex;align-items:center;position:relative;padding:155px 0 100px}.hero-content{width:75%;position:relative;z-index:2}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid #ffffff27;background:#ffffff08;border-radius:999px;color:#dedee2;font:10px 'DM Mono';letter-spacing:.5px;margin-bottom:28px}.status-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 13px #d6ff70;animation:pulse 2s infinite}h1{font-size:clamp(56px,9.3vw,116px);line-height:.93;letter-spacing:-.085em;font-weight:700}h1 .soft{color:#b9bbc2}h1 .accent{color:var(--accent)}.hero-sub{font-size:clamp(16px,2vw,20px);font-weight:600;line-height:1.65;margin-top:27px;max-width:590px}.hero-sub span{color:#b5b5bd;font-weight:400}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:18px;padding:14px 17px;border:1px solid #ffffff2b;border-radius:999px;font-size:11px;font-weight:800;transition:transform .25s,border-color .25s,background .25s}.btn.primary{background:var(--fg);color:#08090b;border-color:var(--fg)}.btn:hover{transform:translateY(-3px);border-color:var(--accent)}.btn.primary:hover{background:var(--accent);border-color:var(--accent)}.socials{display:flex;gap:21px;margin-top:35px;color:#c8c8ce;font:10px 'DM Mono';text-transform:uppercase;letter-spacing:.7px}.socials a:hover{color:var(--accent)}.hero-foot{position:absolute;bottom:27px;left:0;right:0;display:flex;justify-content:space-between;color:#a3a3ab;font:9px 'DM Mono';letter-spacing:1.5px;text-transform:uppercase}.hero-foot b{color:var(--accent);font-weight:400}
+.section{padding:105px 0;border-top:1px solid #ffffff1c;background:linear-gradient(180deg,#08090bcf,#08090bf5 18%,#08090bf5)}.section-head{display:grid;grid-template-columns:1fr .62fr;align-items:end;gap:28px;margin-bottom:38px}.section-no{font:10px 'DM Mono';letter-spacing:2px;color:var(--accent);margin-bottom:16px}.section h2{font-size:clamp(35px,5.5vw,66px);line-height:1;letter-spacing:-.075em}.section-head>p{font-size:13px;line-height:1.9;color:var(--muted);max-width:430px}.accent{color:var(--accent)}.glass{border:1px solid #ffffff1b;background:linear-gradient(135deg,#ffffff0b,#ffffff04);border-radius:20px;backdrop-filter:blur(15px)}.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.about-main{padding:31px}.mini{font:10px 'DM Mono';letter-spacing:1.3px;color:var(--accent);text-transform:uppercase;margin-bottom:22px}.about-main h3{font-size:25px;line-height:1.2;letter-spacing:-1px;margin-bottom:16px}.about-main p{font-size:13px;line-height:1.95;color:var(--muted)}.about-main p+p{margin-top:12px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat{padding:23px;display:flex;flex-direction:column;justify-content:space-between;min-height:130px}.stat strong{font-size:36px;letter-spacing:-2px;color:var(--accent)}.stat span{font:9px 'DM Mono';letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.skill{padding:22px;min-height:130px;transition:transform .25s,border-color .25s,background .25s}.skill:hover{transform:translateY(-4px);border-color:#d6ff7066;background:#d6ff700a}.skill .symbol{font-size:22px;display:block;margin-bottom:22px}.skill h3{font-size:13px}.skill p{font-size:10px;color:var(--muted);margin-top:7px}
+.projects{display:grid;gap:12px}.project{display:grid;grid-template-columns:58px 1fr auto;gap:18px;align-items:center;padding:23px 25px;transition:transform .25s,border-color .25s,background .25s}.project:hover{transform:translateY(-3px);border-color:#d6ff7066;background:#d6ff7008}.project .no{font:11px 'DM Mono';color:var(--accent)}.project h3{font-size:19px;letter-spacing:-.5px}.project p{font-size:12px;line-height:1.8;color:var(--muted);max-width:700px;margin-top:8px}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.tags span{font:9px 'DM Mono';border:1px solid #ffffff20;border-radius:999px;padding:6px 9px;color:#c9c9cf}.arrow{font-size:24px;color:var(--accent);transition:transform .25s}.project:hover .arrow{transform:translate(4px,-4px)}
+.journey{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{padding:22px;border-top:1px solid #ffffff45;transition:border-color .25s}.step:hover{border-color:var(--accent)}.step small{font:9px 'DM Mono';color:var(--accent);letter-spacing:1px}.step h3{font-size:14px;margin:17px 0 10px}.step p{font-size:11px;line-height:1.85;color:var(--muted)}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:36px}.contact-title{font-size:clamp(43px,7vw,83px)!important;line-height:.95!important}.contact-title span{color:var(--accent)}.contact-copy{font-size:13px;line-height:1.9;color:var(--muted);margin-top:20px;max-width:390px}.contact-links{display:grid;gap:12px;margin-top:25px}.contact-links a{font:10px 'DM Mono';color:#d5d5da;overflow-wrap:anywhere}.contact-links a:hover{color:var(--accent)}form{padding:25px;display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:8px}.field.full{grid-column:1/-1}.field label{font:9px 'DM Mono';letter-spacing:1.2px;color:#c5c5cc}.field input,.field textarea{width:100%;background:#0005;border:1px solid #ffffff25;border-radius:10px;color:var(--fg);padding:13px;outline:none;font-size:12px;transition:border-color .2s}.field input:focus,.field textarea:focus{border-color:var(--accent)}.field textarea{min-height:120px;resize:vertical}.form-note{grid-column:1/-1;color:#9999a2;font-size:10px;line-height:1.7}.form-button{justify-self:start;cursor:pointer}footer{padding:24px 0;background:#08090b;border-top:1px solid var(--line)}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;color:var(--muted);font:9px 'DM Mono';letter-spacing:.6px}.footer-row a:hover{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:none}.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+@keyframes pulse{50%{opacity:.45;box-shadow:0 0 3px var(--accent)}}@keyframes intro{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}.hero-content>*{animation:intro .8s both}.hero-content>*:nth-child(1){animation-delay:.1s}.hero-content>*:nth-child(2){animation-delay:.2s}.hero-content>*:nth-child(3){animation-delay:.3s}.hero-content>*:nth-child(4){animation-delay:.4s}.hero-content>*:nth-child(5){animation-delay:.5s}
+@media(max-width:850px){.hero-content{width:90%}.about-grid{grid-template-columns:1fr}.skills{grid-template-columns:repeat(3,1fr)}.journey{grid-template-columns:repeat(2,1fr)}.section-head{grid-template-columns:1fr;gap:15px}.contact-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.wrap{width:calc(100% - 32px)}.nav-shell{top:7px;padding:0 8px}.nav{padding:9px 10px;border-radius:13px}.navlinks{display:none;position:absolute;top:53px;left:0;right:0;padding:19px;background:#101115f5;border:1px solid var(--line);border-radius:14px;flex-direction:column;gap:19px}.navlinks.open{display:flex}.nav-cta{display:none}.menu{display:block}.hero{padding:125px 0 100px;min-height:92svh;align-items:center}.hero-content{width:100%}h1{font-size:clamp(53px,14.5vw,83px)}.hero-foot{font-size:8px;letter-spacing:.8px}.section{padding:72px 0}.section-head{margin-bottom:25px}.skills{grid-template-columns:repeat(2,1fr)}.skill{padding:17px;min-height:120px}.project{grid-template-columns:34px 1fr auto;gap:10px;padding:17px 14px}.project h3{font-size:15px}.project p{font-size:11px}.tags span{font-size:8px}.journey{grid-template-columns:1fr 1fr}.step{padding:15px 10px}.stat{padding:17px;min-height:105px}.stat strong{font-size:29px}.about-main{padding:22px}.about-main h3{font-size:22px}form{grid-template-columns:1fr;padding:18px}.field.full,.form-note{grid-column:auto}.contact-title{font-size:54px!important}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 
-:root {
-  --accent: #ff7043;
-  --pink: #ff3978;
-  --text: #f7f7fb;
-  --muted: #b9c0d0;
-  --glass: rgba(12, 16, 27, .66);
-  --border: rgba(255,255,255,.13);
-}
+/* Enhanced project showcase */
+.project-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.project-count{font:10px 'DM Mono';letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+.project-filters{display:flex;gap:7px;flex-wrap:wrap}
+.project-filter{cursor:pointer;background:#ffffff07;border:1px solid #ffffff24;color:#c9c9cf;padding:9px 12px;border-radius:999px;font:9px 'DM Mono';letter-spacing:.7px;transition:.22s}
+.project-filter:hover,.project-filter.active{background:var(--accent);border-color:var(--accent);color:#08090b}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.project-card{position:relative;min-height:270px;overflow:hidden;padding:24px;display:flex;flex-direction:column;transition:transform .3s,border-color .3s,background .3s}
+.project-card:before{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-65px;top:-75px;background:radial-gradient(circle,#d6ff701a,transparent 70%);pointer-events:none;transition:transform .4s}
+.project-card:hover{transform:translateY(-5px);border-color:#d6ff7070;background:#ffffff0b}
+.project-card:hover:before{transform:scale(1.5)}
+.project-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px}
+.project-icon{width:43px;height:43px;border-radius:13px;display:grid;place-items:center;background:#d6ff7012;border:1px solid #d6ff7035;color:var(--accent);font-size:20px}
+.project-type{font:9px 'DM Mono';letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+.project-card h3{font-size:21px;letter-spacing:-.8px;margin-bottom:10px}
+.project-card p{font-size:12px;line-height:1.85;color:var(--muted);max-width:480px}
+.project-card .tags{margin-top:17px}
+.project-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:22px}
+.project-link{font:10px 'DM Mono';letter-spacing:.6px;color:var(--fg);display:inline-flex;align-items:center;gap:9px}
+.project-link span{color:var(--accent);transition:transform .2s}
+.project-link:hover span{transform:translate(3px,-3px)}
+.repo-status{font:9px 'DM Mono';color:#a4a4ad;display:flex;align-items:center;gap:7px}
+.repo-status:before{content:"";width:6px;height:6px;background:var(--accent);border-radius:50%}
+.project-card[hidden]{display:none}
+.github-banner{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:14px;padding:21px 24px}
+.github-banner p{font-size:12px;color:var(--muted);line-height:1.7}
+.github-banner strong{display:block;color:var(--fg);font-size:14px;margin-bottom:4px}
+.github-banner .btn{white-space:nowrap}
+@media(max-width:650px){.project-grid{grid-template-columns:1fr}.project-card{min-height:250px;padding:20px}.github-banner{align-items:flex-start;flex-direction:column}.project-filters{gap:5px}.project-filter{padding:8px 10px}}
 
-* { margin:0; padding:0; box-sizing:border-box; }
-
-html { scroll-behavior:smooth; }
-
-body {
-  font-family:Inter, sans-serif;
-  color:var(--text);
-  background:#070a12;
-  overflow-x:hidden;
-}
-
-a { color:inherit; text-decoration:none; }
-
-#background {
-  position:fixed;
-  inset:0;
-  z-index:-3;
-  overflow:hidden;
-  background:
-    radial-gradient(ellipse at 75% 35%, #703b51 0%, transparent 38%),
-    linear-gradient(120deg,#071321,#191321 60%,#090b12);
-}
-
-#background video {
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.64;
-  filter:saturate(.85);
-}
-
-.video-shade {
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg,rgba(4,8,16,.84),rgba(4,8,16,.30) 75%),
-    linear-gradient(0deg,#070a12 0%,transparent 55%,rgba(5,8,15,.3));
-}
-
-#particles {
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  z-index:-1;
-}
-
-nav {
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:20;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:19px 8%;
-  background:rgba(6,9,17,.55);
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(18px);
-}
-
-.logo { font-size:23px; font-weight:800; }
-.logo span { color:var(--accent); }
-
-.nav-links {
-  display:flex;
-  gap:30px;
-  font-size:13px;
-  color:#d8d9e3;
-}
-
-.nav-links a:hover { color:var(--accent); }
-
-.contact-btn, .primary-btn, .secondary-btn {
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  padding:13px 21px;
-  border-radius:40px;
-  font-weight:600;
-  font-size:13px;
-  transition:.3s;
-  cursor:pointer;
-}
-
-.contact-btn, .secondary-btn {
-  border:1px solid rgba(255,255,255,.24);
-  background:rgba(255,255,255,.04);
-}
-
-.contact-btn:hover, .secondary-btn:hover {
-  border-color:var(--accent);
-  transform:translateY(-3px);
-}
-
-.primary-btn {
-  color:white;
-  background:linear-gradient(110deg,#ff9d37,#ff3978);
-  border:0;
-  box-shadow:0 8px 30px rgba(255,85,91,.18);
-}
-
-.primary-btn:hover { transform:translateY(-4px); box-shadow:0 12px 35px #ff397833; }
-
-.hero {
-  max-width:1200px;
-  min-height:690px;
-  padding:150px 24px 90px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-}
-
-.hero-content { max-width:650px; animation:appear 1s ease both; }
-
-.availability {
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  padding:10px 15px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.07);
-  border-radius:30px;
-  font-size:12px;
-  margin-bottom:28px;
-  color:#eee;
-}
-
-.dot {
-  width:8px;
-  height:8px;
-  background:#ff9a55;
-  border-radius:50%;
-  box-shadow:0 0 12px #ff9a55;
-  animation:pulse 1.7s infinite;
-}
-
-h1 {
-  font-size:clamp(45px,7vw,84px);
-  line-height:1.05;
-  letter-spacing:-4px;
-  margin-bottom:22px;
-}
-
-.gradient-text {
-  background:linear-gradient(100deg,#ff477d,#ffab45);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-
-.subtitle { font-size:22px; font-weight:600; margin-bottom:15px; }
-
-.description {
-  max-width:510px;
-  color:#c6cad5;
-  line-height:1.9;
-  font-size:15px;
-}
-
-.actions { display:flex; flex-wrap:wrap; gap:13px; margin-top:30px; }
-
-.socials { display:flex; gap:22px; margin-top:32px; }
-.socials a { color:#e6e9f3; font-size:14px; transition:.2s; }
-.socials a:hover { color:var(--accent); transform:translateY(-3px); }
-
-.scroll-cue {
-  position:absolute;
-  right:6%;
-  top:58%;
-  color:#ddd;
-  font-size:12px;
-  writing-mode:vertical-rl;
-  letter-spacing:3px;
-  animation:float 2s infinite ease-in-out;
-}
-
-.section {
-  max-width:1200px;
-  margin:auto;
-  padding:65px 24px;
-}
-
-.about-grid {
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:35px;
-}
-
-.glass {
-  border:1px solid var(--border);
-  background:var(--glass);
-  backdrop-filter:blur(20px);
-  border-radius:22px;
-  padding:30px;
-  box-shadow:0 20px 70px rgba(0,0,0,.15);
-}
-
-.eyebrow {
-  color:#ff9b65;
-  font-size:12px;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  margin-bottom:18px;
-}
-
-h2 { font-size:30px; letter-spacing:-1px; margin-bottom:18px; }
-h3 { font-size:17px; margin-bottom:12px; }
-
-.about-copy { color:var(--muted); line-height:1.85; font-size:14px; }
-
-.details {
-  display:flex;
-  flex-wrap:wrap;
-  gap:22px;
-  margin-top:28px;
-  padding-top:20px;
-  border-top:1px solid var(--border);
-  color:#d7d9e5;
-  font-size:12px;
-}
-
-.skills-grid {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
-}
-
-.skill {
-  padding:19px 8px;
-  border:1px solid var(--border);
-  border-radius:15px;
-  text-align:center;
-  background:rgba(255,255,255,.035);
-  transition:.3s;
-}
-
-.skill:hover {
-  transform:translateY(-5px);
-  border-color:#ff875b;
-  background:rgba(255,112,67,.09);
-}
-
-.skill-icon { font-size:25px; display:block; margin-bottom:10px; }
-.skill-name { font-size:12px; color:#e2e5ee; }
-
-.projects-grid {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:18px;
-}
-
-.project {
-  overflow:hidden;
-  transition:.3s;
-}
-
-.project:hover { transform:translateY(-7px); border-color:#ff875b88; }
-
-.project-visual {
-  height:155px;
-  border-radius:13px;
-  margin-bottom:22px;
-  display:grid;
-  place-items:center;
-  font-size:42px;
-  background:
-    radial-gradient(circle at 70% 25%,#ff704344,transparent 40%),
-    linear-gradient(135deg,#20283b,#0b101c);
-  border:1px solid var(--border);
-}
-
-.project p { color:var(--muted); font-size:13px; line-height:1.8; }
-
-.tags { display:flex; gap:7px; flex-wrap:wrap; margin-top:16px; }
-.tags span {
-  padding:6px 9px;
-  border-radius:20px;
-  background:#ffffff0c;
-  color:#d4d7e3;
-  font-size:10px;
-}
-
-.contact-panel {
-  text-align:center;
-  padding:65px 24px;
-  background:radial-gradient(ellipse at center,#ff704318,transparent 70%);
-}
-
-.contact-panel p {
-  color:var(--muted);
-  line-height:1.8;
-  margin:0 auto 25px;
-  max-width:480px;
-}
-
-footer {
-  border-top:1px solid var(--border);
-  padding:24px 8%;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px;
-  font-size:12px;
-  color:var(--muted);
-}
-
-.reveal {
-  opacity:0;
-  transform:translateY(25px);
-  transition:opacity .8s ease,transform .8s ease;
-}
-.reveal.visible { opacity:1; transform:translateY(0); }
-
-@keyframes appear {
-  from { opacity:0; transform:translateY(25px); }
-  to { opacity:1; transform:translateY(0); }
-}
-@keyframes pulse {
-  50% { opacity:.4; box-shadow:0 0 3px #ff9a55; }
-}
-@keyframes float {
-  50% { transform:translateY(10px); }
-}
-
-@media(max-width:800px) {
-  nav { padding:16px 5%; }
-  .nav-links { display:none; }
-  .hero { min-height:650px; padding-top:140px; }
-  .scroll-cue { display:none; }
-  .about-grid { grid-template-columns:1fr; }
-  .projects-grid { grid-template-columns:1fr 1fr; }
-  h1 { letter-spacing:-2px; }
-}
-
-@media(max-width:520px) {
-  .hero { min-height:620px; padding-left:20px; padding-right:20px; }
-  .subtitle { font-size:18px; }
-  .description { font-size:14px; }
-  .section { padding:45px 18px; }
-  .glass { padding:22px; }
-  .projects-grid { grid-template-columns:1fr; }
-  .skills-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
-  .details { gap:14px; }
-  footer { padding:22px 5%; }
-}
 </style>
 </head>
-
 <body>
-
-<div id="background">
-  <!-- Keep background.mp4 in the same folder as index.html -->
-  <video autoplay muted loop playsinline poster="">
-    <source src="background.mp4" type="video/mp4">
-  </video>
-  <div class="video-shade"></div>
-</div>
-
-<canvas id="particles"></canvas>
-
-<nav>
-  <a href="#home" class="logo"><span>&lt;/&gt;</span> Yogesh</a>
-
-  <div class="nav-links">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
-
-  <a class="contact-btn" href="#contact">✉ Get In Touch</a>
-</nav>
-
+<!-- Replace the video URL below with your own licensed MP4 if desired. Online footage requires internet access. -->
+<video id="cinema" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1920&q=80" aria-hidden="true">
+<source src="https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_25fps.mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div><div class="ambient"></div><div class="grain"></div><div class="progress" id="progress"></div>
+<header class="nav-shell"><nav class="nav"><a class="brand" href="#home"><span class="brand-mark">YC</span> YOGESH CHAVAN</a><div class="navlinks" id="navlinks"><a class="active" href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Projects</a><a href="#journey">Journey</a><a href="#contact">Contact</a></div><a class="nav-cta" href="#contact">Let's talk ↗</a><button class="menu" id="menu" aria-label="Toggle navigation">☰</button></nav></header>
 <main>
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="availability">
-      <span class="dot"></span>
-      Available for new opportunities
-    </div>
-
-    <h1>Hi, I'm <span class="gradient-text">Yogesh</span></h1>
-
-    <div class="subtitle">Full Stack Developer & Problem Solver</div>
-
-    <p class="description">
-      I build modern web applications, turn ideas into reality
-      and love solving complex problems with clean code
-      and creative thinking.
-    </p>
-
-    <div class="actions">
-      <a class="primary-btn" href="#projects">↗ View My Projects</a>
-      <a class="secondary-btn" href="#contact">↓ Let's Connect</a>
-    </div>
-
-    <div class="socials">
-      <a href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="#contact">Email ↗</a>
-    </div>
-  </div>
-
-  <div class="scroll-cue">SCROLL ↓</div>
-</section>
-
-<section class="section reveal" id="about">
-  <div class="about-grid">
-    <div class="glass">
-      <div class="eyebrow">01 / About Me</div>
-      <h2>I'm a Developer<br>Who Loves to <span class="gradient-text">Build</span></h2>
-
-      <p class="about-copy">
-        I'm Yogesh, a passionate developer from India.
-        I love creating web applications that are fast, scalable
-        and user-friendly. My goal is to keep learning, build
-        meaningful products and make a positive impact.
-      </p>
-
-      <div class="details">
-        <span>📍 India</span>
-        <span>🎓 B.Tech Student</span>
-        <span>💻 Full Stack Developer</span>
-      </div>
-    </div>
-
-    <div id="skills">
-      <div class="eyebrow">02 / My Toolkit</div>
-      <h2>Skills & Technologies</h2>
-
-      <div class="skills-grid">
-        <div class="skill"><span class="skill-icon">🌐</span><span class="skill-name">HTML</span></div>
-        <div class="skill"><span class="skill-icon">🎨</span><span class="skill-name">CSS</span></div>
-        <div class="skill"><span class="skill-icon">⚡</span><span class="skill-name">JavaScript</span></div>
-        <div class="skill"><span class="skill-icon">⚛️</span><span class="skill-name">React</span></div>
-        <div class="skill"><span class="skill-icon">🟢</span><span class="skill-name">Node.js</span></div>
-        <div class="skill"><span class="skill-icon">🐍</span><span class="skill-name">Python</span></div>
-        <div class="skill"><span class="skill-icon">☕</span><span class="skill-name">Java</span></div>
-        <div class="skill"><span class="skill-icon">🐙</span><span class="skill-name">Git</span></div>
-        <div class="skill"><span class="skill-icon">🗄️</span><span class="skill-name">Databases</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section reveal" id="projects">
-  <div class="eyebrow">03 / Selected Work</div>
-  <h2>Projects that <span class="gradient-text">Matter.</span></h2>
-
-  <div class="projects-grid">
-    <article class="glass project">
-      <div class="project-visual">🎓</div>
-      <h3>Smart Study Monitor</h3>
-      <p>An AI-powered attendance and study monitoring solution built to make learning smarter.</p>
-      <div class="tags"><span>Python</span><span>AI / ML</span><span>Computer Vision</span></div>
-    </article>
-
-    <article class="glass project">
-      <div class="project-visual">👁️</div>
-      <h3>VisionMate AI</h3>
-      <p>An AI camera assistant concept designed to help blind users understand their surroundings.</p>
-      <div class="tags"><span>React</span><span>AI</span><span>Accessibility</span></div>
-    </article>
-
-    <article class="glass project">
-      <div class="project-visual">💚</div>
-      <h3>Food Donation Platform</h3>
-      <p>A platform concept connecting donors, NGOs and volunteers to share useful resources.</p>
-      <div class="tags"><span>Web</span><span>Community</span><span>Social Impact</span></div>
-    </article>
-  </div>
-</section>
-
-<section class="contact-panel reveal" id="contact">
-  <div class="eyebrow">04 / What's Next?</div>
-  <h2>Have a project in <span class="gradient-text">mind?</span></h2>
-  <p>
-    I'm always excited to explore new ideas, collaborate on
-    meaningful projects and connect with fellow developers.
-  </p>
-  <!-- Replace this email with your real email -->
-  <a class="primary-btn" href="mailto:your-email@example.com">✉ Say Hello</a>
-</section>
-</main>
-
-<footer>
-  <a class="logo" href="#home"><span>&lt;/&gt;</span> Yogesh</a>
-  <span>Designed with creativity & code © 2026</span>
-  <a href="#home">Back to top ↑</a>
-</footer>
-
+<section class="hero wrap" id="home"><div class="hero-content"><div class="eyebrow"><span class="status-dot"></span> BUILDING WITH CURIOSITY · INDIA</div><h1>Ideas into<br><span class="soft">experiences</span><span class="accent">.</span></h1><p class="hero-sub">Hey, I'm Yogesh. <span>A developer exploring web technology, AI, and thoughtful digital experiences that make a real difference.</span></p><div class="hero-actions"><a class="btn primary" href="#work">Explore my work <span>↗</span></a><a class="btn" href="#contact">Start a conversation <span>↘</span></a></div><div class="socials"><a href="https://github.com/codewithyogeshh" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/yogesh-chavan2a" target="_blank" rel="noopener">LinkedIn ↗</a><a href="mailto:yogeshchavan2a@gmail.com">Email ↗</a></div></div><div class="hero-foot"><span><b>●</b> Open to learning & collaboration</span><span>Scroll to explore ↓</span></div></section>
+<section class="section" id="about"><div class="wrap"><div class="section-head reveal"><div><div class="section-no">01 / ABOUT ME</div><h2>Thoughtful code.<br><span class="accent">Useful outcomes.</span></h2></div><p>I enjoy bringing ideas to life through code—balancing clean implementation, considered design, and practical purpose.</p></div><div class="about-grid"><article class="glass about-main reveal"><div class="mini">A little about me</div><h3>Developer in progress.<br>Problem-solver at heart.</h3><p>I'm Yogesh Chavan, based in India, and I'm building my skills across web development, programming, and AI. I learn best by making things, testing ideas, and improving each iteration.</p><p>I'm especially interested in technology that helps people—whether that's more accessible experiences, smarter workflows, or community-focused platforms.</p></article><div class="stats"><div class="glass stat reveal d1"><strong>∞</strong><span>Curiosity to learn</span></div><div class="glass stat reveal d2"><strong>AI</strong><span>Area of exploration</span></div><div class="glass stat reveal d1"><strong>Build</strong><span>Learn by doing</span></div><div class="glass stat reveal d2"><strong>People</strong><span>Impact matters</span></div></div></div></div></section>
+<section class="section" id="skills"><div class="wrap"><div class="section-head reveal"><div><div class="section-no">02 / TOOLKIT</div><h2>Tools for the<br><span class="accent">next idea.</span></h2></div><p>My growing toolkit for building interfaces, writing reliable software, and exploring intelligent applications.</p></div><div class="skills"><article class="glass skill reveal"><span class="symbol">⌘</span><h3>HTML & CSS</h3><p>Structure, layout, motion</p></article><article class="glass skill reveal d1"><span class="symbol">ϟ</span><h3>JavaScript</h3><p>Interactive experiences</p></article><article class="glass skill reveal d2"><span class="symbol">◉</span><h3>React</h3><p>Component-based UI</p></article><article class="glass skill reveal d3"><span class="symbol">⌬</span><h3>Python</h3><p>Automation & AI</p></article><article class="glass skill reveal"><span class="symbol">J</span><h3>Java</h3><p>Programming foundations</p></article><article class="glass skill reveal d1"><span class="symbol">⑂</span><h3>Git & GitHub</h3><p>Version control</p></article><article class="glass skill reveal d2"><span class="symbol">◈</span><h3>Supabase</h3><p>Backend experiments</p></article><article class="glass skill reveal d3"><span class="symbol">✳</span><h3>AI & Computer Vision</h3><p>Human-centred applications</p></article></div></div></section>
+<section class="section" id="work"><div class="wrap"><div class="section-head reveal"><div><div class="section-no">03 / SELECTED WORK</div><h2>Built with purpose.<br><span class="accent">Made to matter.</span></h2></div><p>A curated look at repositories from my GitHub profile—learning projects, practical tools, and experiments in AI and accessible technology.</p></div>
+<div class="project-toolbar reveal"><span class="project-count">PROJECT INDEX / <span id="projectCount">6</span> REPOSITORIES</span><div class="project-filters" role="group" aria-label="Filter projects"><button class="project-filter active" data-filter="all">ALL WORK</button><button class="project-filter" data-filter="web">WEB</button><button class="project-filter" data-filter="ai">AI & ACCESSIBILITY</button><button class="project-filter" data-filter="tools">TOOLS</button></div></div>
+<div class="project-grid">
+<article class="glass project-card reveal" data-category="ai"><div class="project-top"><span class="project-icon">◉</span><span class="project-type">01 / AI · COMPUTER VISION</span></div><h3>Smart Study Monitor</h3><p>A computer-vision attendance and study-monitoring project built around the idea of making classroom workflows smarter and reducing proxy attendance. Previously documented as using a YOLOv8 model.</p><div class="tags"><span>PYTHON</span><span>YOLOv8</span><span>COMPUTER VISION</span></div><div class="project-bottom"><a class="project-link" href="https://github.com/codewithyogeshh/Smart_Study_Monitor" target="_blank" rel="noopener">VIEW REPOSITORY <span>↗</span></a><span class="repo-status">GitHub project</span></div></article>
+<article class="glass project-card reveal d1" data-category="tools"><div class="project-top"><span class="project-icon">◎</span><span class="project-type">02 / PRODUCTIVITY</span></div><h3>Goal Tracker</h3><p>A goal and achievement tracker concept focused on organizing personal goals, reviewing progress, and keeping a clear, focused workflow.</p><div class="tags"><span>GOAL SETTING</span><span>PRODUCTIVITY</span><span>WEB APP</span></div><div class="project-bottom"><a class="project-link" href="https://github.com/codewithyogeshh/Goal_Tracker" target="_blank" rel="noopener">VIEW REPOSITORY <span>↗</span></a><span class="repo-status">Public repository</span></div></article>
+<article class="glass project-card reveal" data-category="ai"><div class="project-top"><span class="project-icon">✳</span><span class="project-type">03 / ACCESSIBILITY · AI</span></div><h3>VisionMate AI</h3><p>An AI camera-assistant project concept designed to help blind and low-vision users understand objects, scenes, text, and their surroundings. Explore the code and current implementation in the repository.</p><div class="tags"><span>AI ASSISTANT</span><span>ACCESSIBILITY</span><span>VISION</span></div><div class="project-bottom"><a class="project-link" href="https://github.com/codewithyogeshh/finalevisionmate" target="_blank" rel="noopener">VIEW REPOSITORY <span>↗</span></a><span class="repo-status">Public repository</span></div></article>
+<article class="glass project-card reveal d1" data-category="web"><div class="project-top"><span class="project-icon">⌘</span><span class="project-type">04 / WEB · LEARNING</span></div><h3>CodeGuruCool</h3><p>A web-based coding and learning project aimed at making programming practice approachable, organizing concepts, and leaving room for future learning modules.</p><div class="tags"><span>HTML</span><span>WEB DEVELOPMENT</span><span>LEARNING</span></div><div class="project-bottom"><a class="project-link" href="https://github.com/codewithyogeshh/codegurucool" target="_blank" rel="noopener">VIEW REPOSITORY <span>↗</span></a><span class="repo-status">Public repository</span></div></article>
+<article class="glass project-card reveal" data-category="web"><div class="project-top"><span class="project-icon">⌁</span><span class="project-type">05 / WEB · PRACTICE</span></div><h3>Code Projects</h3><p>A collection of programming practice and experiments documenting the journey through core computer-science concepts and software development.</p><div class="tags"><span>PROGRAMMING</span><span>PRACTICE</span><span>EXPERIMENTS</span></div><div class="project-bottom"><a class="project-link" href="https://github.com/codewithyogeshh/codewithyogeshhh" target="_blank" rel="noopener">VIEW REPOSITORY <span>↗</span></a><span class="repo-status">Public repository</span></div></article>
+<article class="glass project-card reveal d1" data-category="tools"><div class="project-top"><span class="project-icon">↗</span><span class="project-type">06 / REPOSITORY</span></div><h3>Goal Tracker — Alternate</h3><p>A second public Goal Tracker repository. Open it to inspect the latest code and compare its implementation with the main Goal Tracker project.</p><div class="tags"><span>PRODUCTIVITY</span><span>ITERATION</span><span>GITHUB</span></div><div class="project-bottom"><a class="project-link" href="https://github.com/codewithyogeshh/Goal_Tracker--" target="_blank" rel="noopener">VIEW REPOSITORY <span>↗</span></a><span class="repo-status">Public repository</span></div></article>
+</div>
+<div class="glass github-banner reveal"><div><strong>More experiments. More in progress.</strong><p>Visit my GitHub profile to explore all public repositories and the latest code.</p></div><a class="btn primary" href="https://github.com/codewithyogeshh?tab=repositories" target="_blank" rel="noopener">All repositories ↗</a></div>
+</div></section>
+<section class="section" id="journey"><div class="wrap"><div class="section-head reveal"><div><div class="section-no">04 / JOURNEY</div><h2>Progress over<br><span class="accent">perfection.</span></h2></div><p>A simple approach: strengthen the fundamentals, build useful projects, and keep refining the craft.</p></div><div class="journey"><article class="step reveal"><small>01 — LEARN</small><h3>Strong foundations</h3><p>Practice Java, Python, logic, and core programming concepts.</p></article><article class="step reveal d1"><small>02 — BUILD</small><h3>Web experiences</h3><p>Create responsive interfaces and practical interactive websites.</p></article><article class="step reveal d2"><small>03 — EXPLORE</small><h3>AI for people</h3><p>Experiment with computer vision and accessible AI applications.</p></article><article class="step reveal d3"><small>04 — REFINE</small><h3>Ship thoughtfully</h3><p>Improve usability, accessibility, performance, and code quality.</p></article></div></div></section>
+<section class="section" id="contact"><div class="wrap contact-grid"><div class="reveal"><div class="section-no">05 / SAY HELLO</div><h2 class="contact-title">Have an idea?<br><span>Let's build it.</span></h2><p class="contact-copy">Have a project, collaboration idea, or just want to talk about technology? Send me a message.</p><div class="contact-links"><a href="mailto:yogeshchavan2a@gmail.com">↗ YOGESHCHAVAN2A@GMAIL.COM</a><a href="https://github.com/codewithyogeshh" target="_blank" rel="noopener">↗ GITHUB.COM/CODEWITHYOGESHH</a><a href="https://www.linkedin.com/in/yogesh-chavan2a" target="_blank" rel="noopener">↗ LINKEDIN.COM/IN/YOGESH-CHAVAN2A</a></div></div><form class="glass reveal d1" id="contactForm"><div class="field"><label for="name">NAME</label><input id="name" name="name" placeholder="Your name" required></div><div class="field"><label for="email">EMAIL</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div><div class="field full"><label for="subject">SUBJECT</label><input id="subject" name="subject" placeholder="What's on your mind?" required></div><div class="field full"><label for="message">MESSAGE</label><textarea id="message" name="message" placeholder="Tell me about your idea..." required></textarea></div><button class="btn primary form-button" type="submit">Compose email ↗</button><p class="form-note">This opens your default email app with the details filled in. Nothing is sent or stored by this page.</p></form></div></section>
+</main><footer><div class="wrap footer-row"><a class="brand" href="#home"><span class="brand-mark">YC</span> YOGESH CHAVAN</a><span>MADE WITH CARE · © <span id="year"></span></span><a href="#home">BACK TO TOP ↑</a></div></footer>
 <script>
-// Animated glowing particles
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-let particles = [];
-let width, height;
-let mouse = { x: -1000, y: -1000 };
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('year').textContent=new Date().getFullYear();
+const progress=document.getElementById('progress');function setProgress(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%'}addEventListener('scroll',setProgress,{passive:true});setProgress();
+const menu=document.getElementById('menu'),links=document.getElementById('navlinks');menu.addEventListener('click',()=>{links.classList.toggle('open');menu.textContent=links.classList.contains('open')?'✕':'☰'});links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.textContent='☰'}));
+if('IntersectionObserver'in window&&!reduced){const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el))}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+if('IntersectionObserver'in window){const activeObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)links.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id))}),{rootMargin:'-35% 0px -55% 0px'});document.querySelectorAll('main section[id]').forEach(s=>activeObserver.observe(s))}
 
-function resize() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  width = window.innerWidth;
-  height = window.innerHeight;
+const projectFilters=document.querySelectorAll('.project-filter');
+const projectCards=document.querySelectorAll('.project-card');
+const projectCount=document.getElementById('projectCount');
+projectFilters.forEach(button=>button.addEventListener('click',()=>{
+  projectFilters.forEach(b=>b.classList.toggle('active',b===button));
+  let visible=0;
+  projectCards.forEach(card=>{const show=button.dataset.filter==='all'||card.dataset.category===button.dataset.filter;card.hidden=!show;if(show)visible++;});
+  projectCount.textContent=visible;
+}));
 
-  canvas.width = width * dpr;
-  canvas.height = height * dpr;
-  canvas.style.width = width + "px";
-  canvas.style.height = height + "px";
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-  const count = width < 600 ? 22 : 48;
-  particles = Array.from({ length: count }, () => ({
-    x: Math.random() * width,
-    y: Math.random() * height,
-    r: Math.random() * 2 + .5,
-    speed: Math.random() * .35 + .12,
-    drift: (Math.random() - .5) * .35,
-    alpha: Math.random() * .55 + .15
-  }));
-}
-
-window.addEventListener("resize", resize);
-window.addEventListener("pointermove", e => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-});
-window.addEventListener("pointerleave", () => {
-  mouse.x = -1000;
-  mouse.y = -1000;
-});
-
-function animate() {
-  ctx.clearRect(0, 0, width, height);
-
-  for (const p of particles) {
-    p.y -= p.speed;
-    p.x += p.drift;
-
-    if (p.y < -10) {
-      p.y = height + 10;
-      p.x = Math.random() * width;
-    }
-
-    if (p.x < -10) p.x = width + 10;
-    if (p.x > width + 10) p.x = -10;
-
-    const dx = p.x - mouse.x;
-    const dy = p.y - mouse.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance < 120 && distance > 0) {
-      p.x += dx / distance * .45;
-      p.y += dy / distance * .45;
-    }
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255, ${125 + Math.random() * 35}, 100, ${p.alpha})`;
-    ctx.shadowBlur = 12;
-    ctx.shadowColor = "#ff7043";
-    ctx.fill();
-  }
-
-  ctx.shadowBlur = 0;
-  requestAnimationFrame(animate);
-}
-
-resize();
-animate();
-
-// Reveal sections while scrolling
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: .12 });
-
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-// If the browser blocks or cannot load the video, the animated
-// gradient background and particles will remain visible.
+const video=document.getElementById('cinema');video.play().catch(()=>{});
+document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.currentTarget);const subject=encodeURIComponent(d.get('subject'));const body=encodeURIComponent(`Hi Yogesh,\n\n${d.get('message')}\n\nFrom: ${d.get('name')}\nReply email: ${d.get('email')}`);location.href=`mailto:yogeshchavan2a@gmail.com?subject=${subject}&body=${body}`});
 </script>
-
-</body>
-</html>
+</body></html>

@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yogesh | Creative Developer</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --accent: #ff7043;
+  --pink: #ff3978;
+  --text: #f7f7fb;
+  --muted: #b9c0d0;
+  --glass: rgba(12, 16, 27, .66);
+  --border: rgba(255,255,255,.13);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:Inter, sans-serif;
+  color:var(--text);
+  background:#070a12;
+  overflow-x:hidden;
+}
+
+a { color:inherit; text-decoration:none; }
+
+#background {
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 75% 35%, #703b51 0%, transparent 38%),
+    linear-gradient(120deg,#071321,#191321 60%,#090b12);
+}
+
+#background video {
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.64;
+  filter:saturate(.85);
+}
+
+.video-shade {
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(4,8,16,.84),rgba(4,8,16,.30) 75%),
+    linear-gradient(0deg,#070a12 0%,transparent 55%,rgba(5,8,15,.3));
+}
+
+#particles {
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:-1;
+}
+
+nav {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:20;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:19px 8%;
+  background:rgba(6,9,17,.55);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(18px);
+}
+
+.logo { font-size:23px; font-weight:800; }
+.logo span { color:var(--accent); }
+
+.nav-links {
+  display:flex;
+  gap:30px;
+  font-size:13px;
+  color:#d8d9e3;
+}
+
+.nav-links a:hover { color:var(--accent); }
+
+.contact-btn, .primary-btn, .secondary-btn {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  padding:13px 21px;
+  border-radius:40px;
+  font-weight:600;
+  font-size:13px;
+  transition:.3s;
+  cursor:pointer;
+}
+
+.contact-btn, .secondary-btn {
+  border:1px solid rgba(255,255,255,.24);
+  background:rgba(255,255,255,.04);
+}
+
+.contact-btn:hover, .secondary-btn:hover {
+  border-color:var(--accent);
+  transform:translateY(-3px);
+}
+
+.primary-btn {
+  color:white;
+  background:linear-gradient(110deg,#ff9d37,#ff3978);
+  border:0;
+  box-shadow:0 8px 30px rgba(255,85,91,.18);
+}
+
+.primary-btn:hover { transform:translateY(-4px); box-shadow:0 12px 35px #ff397833; }
+
+.hero {
+  max-width:1200px;
+  min-height:690px;
+  padding:150px 24px 90px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+}
+
+.hero-content { max-width:650px; animation:appear 1s ease both; }
+
+.availability {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:10px 15px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.07);
+  border-radius:30px;
+  font-size:12px;
+  margin-bottom:28px;
+  color:#eee;
+}
+
+.dot {
+  width:8px;
+  height:8px;
+  background:#ff9a55;
+  border-radius:50%;
+  box-shadow:0 0 12px #ff9a55;
+  animation:pulse 1.7s infinite;
+}
+
+h1 {
+  font-size:clamp(45px,7vw,84px);
+  line-height:1.05;
+  letter-spacing:-4px;
+  margin-bottom:22px;
+}
+
+.gradient-text {
+  background:linear-gradient(100deg,#ff477d,#ffab45);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.subtitle { font-size:22px; font-weight:600; margin-bottom:15px; }
+
+.description {
+  max-width:510px;
+  color:#c6cad5;
+  line-height:1.9;
+  font-size:15px;
+}
+
+.actions { display:flex; flex-wrap:wrap; gap:13px; margin-top:30px; }
+
+.socials { display:flex; gap:22px; margin-top:32px; }
+.socials a { color:#e6e9f3; font-size:14px; transition:.2s; }
+.socials a:hover { color:var(--accent); transform:translateY(-3px); }
+
+.scroll-cue {
+  position:absolute;
+  right:6%;
+  top:58%;
+  color:#ddd;
+  font-size:12px;
+  writing-mode:vertical-rl;
+  letter-spacing:3px;
+  animation:float 2s infinite ease-in-out;
+}
+
+.section {
+  max-width:1200px;
+  margin:auto;
+  padding:65px 24px;
+}
+
+.about-grid {
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:35px;
+}
+
+.glass {
+  border:1px solid var(--border);
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  border-radius:22px;
+  padding:30px;
+  box-shadow:0 20px 70px rgba(0,0,0,.15);
+}
+
+.eyebrow {
+  color:#ff9b65;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+h2 { font-size:30px; letter-spacing:-1px; margin-bottom:18px; }
+h3 { font-size:17px; margin-bottom:12px; }
+
+.about-copy { color:var(--muted); line-height:1.85; font-size:14px; }
+
+.details {
+  display:flex;
+  flex-wrap:wrap;
+  gap:22px;
+  margin-top:28px;
+  padding-top:20px;
+  border-top:1px solid var(--border);
+  color:#d7d9e5;
+  font-size:12px;
+}
+
+.skills-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.skill {
+  padding:19px 8px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  text-align:center;
+  background:rgba(255,255,255,.035);
+  transition:.3s;
+}
+
+.skill:hover {
+  transform:translateY(-5px);
+  border-color:#ff875b;
+  background:rgba(255,112,67,.09);
+}
+
+.skill-icon { font-size:25px; display:block; margin-bottom:10px; }
+.skill-name { font-size:12px; color:#e2e5ee; }
+
+.projects-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+
+.project {
+  overflow:hidden;
+  transition:.3s;
+}
+
+.project:hover { transform:translateY(-7px); border-color:#ff875b88; }
+
+.project-visual {
+  height:155px;
+  border-radius:13px;
+  margin-bottom:22px;
+  display:grid;
+  place-items:center;
+  font-size:42px;
+  background:
+    radial-gradient(circle at 70% 25%,#ff704344,transparent 40%),
+    linear-gradient(135deg,#20283b,#0b101c);
+  border:1px solid var(--border);
+}
+
+.project p { color:var(--muted); font-size:13px; line-height:1.8; }
+
+.tags { display:flex; gap:7px; flex-wrap:wrap; margin-top:16px; }
+.tags span {
+  padding:6px 9px;
+  border-radius:20px;
+  background:#ffffff0c;
+  color:#d4d7e3;
+  font-size:10px;
+}
+
+.contact-panel {
+  text-align:center;
+  padding:65px 24px;
+  background:radial-gradient(ellipse at center,#ff704318,transparent 70%);
+}
+
+.contact-panel p {
+  color:var(--muted);
+  line-height:1.8;
+  margin:0 auto 25px;
+  max-width:480px;
+}
+
+footer {
+  border-top:1px solid var(--border);
+  padding:24px 8%;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.reveal {
+  opacity:0;
+  transform:translateY(25px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+@keyframes appear {
+  from { opacity:0; transform:translateY(25px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes pulse {
+  50% { opacity:.4; box-shadow:0 0 3px #ff9a55; }
+}
+@keyframes float {
+  50% { transform:translateY(10px); }
+}
+
+@media(max-width:800px) {
+  nav { padding:16px 5%; }
+  .nav-links { display:none; }
+  .hero { min-height:650px; padding-top:140px; }
+  .scroll-cue { display:none; }
+  .about-grid { grid-template-columns:1fr; }
+  .projects-grid { grid-template-columns:1fr 1fr; }
+  h1 { letter-spacing:-2px; }
+}
+
+@media(max-width:520px) {
+  .hero { min-height:620px; padding-left:20px; padding-right:20px; }
+  .subtitle { font-size:18px; }
+  .description { font-size:14px; }
+  .section { padding:45px 18px; }
+  .glass { padding:22px; }
+  .projects-grid { grid-template-columns:1fr; }
+  .skills-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .details { gap:14px; }
+  footer { padding:22px 5%; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="background">
+  <!-- Keep background.mp4 in the same folder as index.html -->
+  <video autoplay muted loop playsinline poster="">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+  <div class="video-shade"></div>
+</div>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <a href="#home" class="logo"><span>&lt;/&gt;</span> Yogesh</a>
+
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <a class="contact-btn" href="#contact">✉ Get In Touch</a>
+</nav>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="availability">
+      <span class="dot"></span>
+      Available for new opportunities
+    </div>
+
+    <h1>Hi, I'm <span class="gradient-text">Yogesh</span></h1>
+
+    <div class="subtitle">Full Stack Developer & Problem Solver</div>
+
+    <p class="description">
+      I build modern web applications, turn ideas into reality
+      and love solving complex problems with clean code
+      and creative thinking.
+    </p>
+
+    <div class="actions">
+      <a class="primary-btn" href="#projects">↗ View My Projects</a>
+      <a class="secondary-btn" href="#contact">↓ Let's Connect</a>
+    </div>
+
+    <div class="socials">
+      <a href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="#contact">Email ↗</a>
+    </div>
+  </div>
+
+  <div class="scroll-cue">SCROLL ↓</div>
+</section>
+
+<section class="section reveal" id="about">
+  <div class="about-grid">
+    <div class="glass">
+      <div class="eyebrow">01 / About Me</div>
+      <h2>I'm a Developer<br>Who Loves to <span class="gradient-text">Build</span></h2>
+
+      <p class="about-copy">
+        I'm Yogesh, a passionate developer from India.
+        I love creating web applications that are fast, scalable
+        and user-friendly. My goal is to keep learning, build
+        meaningful products and make a positive impact.
+      </p>
+
+      <div class="details">
+        <span>📍 India</span>
+        <span>🎓 B.Tech Student</span>
+        <span>💻 Full Stack Developer</span>
+      </div>
+    </div>
+
+    <div id="skills">
+      <div class="eyebrow">02 / My Toolkit</div>
+      <h2>Skills & Technologies</h2>
+
+      <div class="skills-grid">
+        <div class="skill"><span class="skill-icon">🌐</span><span class="skill-name">HTML</span></div>
+        <div class="skill"><span class="skill-icon">🎨</span><span class="skill-name">CSS</span></div>
+        <div class="skill"><span class="skill-icon">⚡</span><span class="skill-name">JavaScript</span></div>
+        <div class="skill"><span class="skill-icon">⚛️</span><span class="skill-name">React</span></div>
+        <div class="skill"><span class="skill-icon">🟢</span><span class="skill-name">Node.js</span></div>
+        <div class="skill"><span class="skill-icon">🐍</span><span class="skill-name">Python</span></div>
+        <div class="skill"><span class="skill-icon">☕</span><span class="skill-name">Java</span></div>
+        <div class="skill"><span class="skill-icon">🐙</span><span class="skill-name">Git</span></div>
+        <div class="skill"><span class="skill-icon">🗄️</span><span class="skill-name">Databases</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="projects">
+  <div class="eyebrow">03 / Selected Work</div>
+  <h2>Projects that <span class="gradient-text">Matter.</span></h2>
+
+  <div class="projects-grid">
+    <article class="glass project">
+      <div class="project-visual">🎓</div>
+      <h3>Smart Study Monitor</h3>
+      <p>An AI-powered attendance and study monitoring solution built to make learning smarter.</p>
+      <div class="tags"><span>Python</span><span>AI / ML</span><span>Computer Vision</span></div>
+    </article>
+
+    <article class="glass project">
+      <div class="project-visual">👁️</div>
+      <h3>VisionMate AI</h3>
+      <p>An AI camera assistant concept designed to help blind users understand their surroundings.</p>
+      <div class="tags"><span>React</span><span>AI</span><span>Accessibility</span></div>
+    </article>
+
+    <article class="glass project">
+      <div class="project-visual">💚</div>
+      <h3>Food Donation Platform</h3>
+      <p>A platform concept connecting donors, NGOs and volunteers to share useful resources.</p>
+      <div class="tags"><span>Web</span><span>Community</span><span>Social Impact</span></div>
+    </article>
+  </div>
+</section>
+
+<section class="contact-panel reveal" id="contact">
+  <div class="eyebrow">04 / What's Next?</div>
+  <h2>Have a project in <span class="gradient-text">mind?</span></h2>
+  <p>
+    I'm always excited to explore new ideas, collaborate on
+    meaningful projects and connect with fellow developers.
+  </p>
+  <!-- Replace this email with your real email -->
+  <a class="primary-btn" href="mailto:your-email@example.com">✉ Say Hello</a>
+</section>
+</main>
+
+<footer>
+  <a class="logo" href="#home"><span>&lt;/&gt;</span> Yogesh</a>
+  <span>Designed with creativity & code © 2026</span>
+  <a href="#home">Back to top ↑</a>
+</footer>
+
+<script>
+// Animated glowing particles
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let particles = [];
+let width, height;
+let mouse = { x: -1000, y: -1000 };
+
+function resize() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  width = window.innerWidth;
+  height = window.innerHeight;
+
+  canvas.width = width * dpr;
+  canvas.height = height * dpr;
+  canvas.style.width = width + "px";
+  canvas.style.height = height + "px";
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const count = width < 600 ? 22 : 48;
+  particles = Array.from({ length: count }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    r: Math.random() * 2 + .5,
+    speed: Math.random() * .35 + .12,
+    drift: (Math.random() - .5) * .35,
+    alpha: Math.random() * .55 + .15
+  }));
+}
+
+window.addEventListener("resize", resize);
+window.addEventListener("pointermove", e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+window.addEventListener("pointerleave", () => {
+  mouse.x = -1000;
+  mouse.y = -1000;
+});
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+
+  for (const p of particles) {
+    p.y -= p.speed;
+    p.x += p.drift;
+
+    if (p.y < -10) {
+      p.y = height + 10;
+      p.x = Math.random() * width;
+    }
+
+    if (p.x < -10) p.x = width + 10;
+    if (p.x > width + 10) p.x = -10;
+
+    const dx = p.x - mouse.x;
+    const dy = p.y - mouse.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < 120 && distance > 0) {
+      p.x += dx / distance * .45;
+      p.y += dy / distance * .45;
+    }
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255, ${125 + Math.random() * 35}, 100, ${p.alpha})`;
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = "#ff7043";
+    ctx.fill();
+  }
+
+  ctx.shadowBlur = 0;
+  requestAnimationFrame(animate);
+}
+
+resize();
+animate();
+
+// Reveal sections while scrolling
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: .12 });
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+// If the browser blocks or cannot load the video, the animated
+// gradient background and particles will remain visible.
+</script>
+
+</body>
+</html>
