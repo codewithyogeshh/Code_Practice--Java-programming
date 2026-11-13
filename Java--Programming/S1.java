@@ -11,6 +11,7 @@ public static void main(String[]args){
 
 	//दोन objects ची content/value compare करतो.  
 	System.out.println(s1.equals(s2));
+
 }
 
 }
