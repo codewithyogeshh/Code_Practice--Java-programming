@@ -11,6 +11,12 @@ class Demo{
 
         System.out.println("Your age: " + age);
 
+	System.out.print("Enter your marks: ");
+
+        double marks = sc.nextDouble();
+
+        System.out.println("Your marks: " + marks);
+
         sc.close();
     }
 }
