@@ -19,4 +19,10 @@ print(name.title())
 print(name.capitalize())
 print(name.swapcase())
 
-#
+#Remove Extra Space
+
+text = "   Hello Python   "
+
+print(text.strip())
+print(text.lstrip())
+print(text.rstrip())
