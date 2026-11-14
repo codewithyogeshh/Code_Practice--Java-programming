@@ -26,3 +26,12 @@ text = "   Hello Python   "
 print(text.strip())
 print(text.lstrip())
 print(text.rstrip())
+
+
+#Replace Text
+
+message = "I love Java"
+
+new_message = message.replace("Java", "Python")
+
+print(new_message)
