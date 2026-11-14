@@ -8,3 +8,15 @@ print(name[:6])
 print(name[7:])
 print(name[::2])
 print(name[::-1])
+
+#String Manipulate 
+
+name = "hello python"
+
+print(name.upper())
+print(name.lower())
+print(name.title())
+print(name.capitalize())
+print(name.swapcase())
+
+#
