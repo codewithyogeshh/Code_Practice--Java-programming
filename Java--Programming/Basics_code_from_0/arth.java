@@ -16,5 +16,12 @@ class Demo {
 
 	System.out.println(x == y);
 	System.out.println(x.equals(y));
+
+	
+
+	boolean hasEmail = false;
+ 	boolean hasPhone = true;
+
+	System.out.println(hasEmail || hasPhone);
     }
 }
