@@ -36,4 +36,13 @@ new_message = message.replace("Java", "Python")
 
 print(new_message)
 
+
+
 #Find & Count
+
+text = "Python is easy. Python is powerful."
+
+print(text.find("Python"))
+print(text.count("Python"))
+print(text.startswith("Python"))
+print(text.endswith("powerful."))
